@@ -26,17 +26,21 @@ for data_file in data_files:
 # Initialize Data
 df = pd.concat(df_list, ignore_index=True)
 
-# Remove new lines, then strip data
+# Remove new lines, abstract URLs
 df['text'] = df['text'].str.replace(r'[\r\n]+', ' ', regex=True)
+df['text'] = df['text'].str.replace(r'http\S+', ' URL ', regex=True)
+
+# Strip data, and remove duplicates
 df['text'] = df['text'].str.strip()
+df = df.drop_duplicates(subset=['text'])
 
 # Get out train/test data
 X = df['text']
 Y = df['label']
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=27)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=27, stratify=Y)
 
 # Feature Extraction
-tfidf = TfidfVectorizer(ngram_range=(1, 2), stop_words='english', lowercase=True)
+tfidf = TfidfVectorizer(ngram_range=(1, 3), stop_words='english', lowercase=True)
 X_train_feat = tfidf.fit_transform(X_train)
 X_test_feat = tfidf.transform(X_test)
 
