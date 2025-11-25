@@ -6,7 +6,7 @@ It includes a front end where users can submit email content and receive the pro
 
 ## How It's Made:
 
-**Front End:** React & Typescript\n
+**Front End:** React & Typescript  
 **Back End:** Python & Flask
 
 ## How to Use:
