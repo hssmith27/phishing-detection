@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import '../components_styles/EmailForm.css'
 
 interface PredictionResponse {
     probability: number;
@@ -17,12 +18,13 @@ const EmailForm = () => {
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({subject, body})
         });
-        const data = await response.json();
+        const data: PredictionResponse = await response.json();
         setProbability(data['probability'])
     }
 
     return (
-        <div>
+        <div className="form-container">
+            <span>Phishing Attempt Probability: {probability * 100}%</span>
             <form onSubmit = {handleSubmit}>
                 <label>Email Subject:</label>
                 <input
@@ -32,15 +34,13 @@ const EmailForm = () => {
                     onChange={(e) => setSubject(e.target.value)}
                 />
                 <label>Email Body:</label>
-                <input
-                    type = 'text'
+                <textarea
                     required
                     value = {body}
                     onChange={(e) => setBody(e.target.value)}
                 />
                 <button type='submit'>Submit</button>
             </form>
-            <h2>{probability}</h2>
         </div>
     )
 }
