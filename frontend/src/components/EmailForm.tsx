@@ -24,8 +24,9 @@ const EmailForm = () => {
 
     return (
         <div className="form-container">
-            <span>Phishing Attempt Probability: {probability * 100}%</span>
             <form onSubmit = {handleSubmit}>
+                <span>Phishing Attempt Probability: {Math.round(probability * 100)}%</span>
+                <hr></hr>
                 <label>Email Subject:</label>
                 <input
                     type = 'text'

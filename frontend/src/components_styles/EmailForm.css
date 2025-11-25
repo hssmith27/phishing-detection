@@ -3,29 +3,37 @@
 }
 
 .form-container {
-    background-color: #0f172a;
+    background: #0F172A;
+    background: radial-gradient(circle,rgba(15, 23, 42, 1) 0%, rgba(23, 21, 22, 1) 100%); 
     color: #e0e0e0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 span {
     font-family: Arial;
     display: inline-block;
     font-size: 1.5rem;
-    margin: 15px 0px;
+    margin: 5px 0px;
     font-weight: 600;
+}
+
+hr {
+    margin-bottom: 20px;
+    border-color: #8b5cf6;
+    border-radius: 1rem;
+    border-width: 0.1rem;
+    border-style: solid;
 }
 
 form {
     font-family: Arial;
-    background-color: #1e293b;
+    background-color: #1D232E;
     padding: 1.8rem;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     width: 100%;
     max-width: 600px;
