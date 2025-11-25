@@ -1,14 +1,13 @@
 import pandas as pd
 import glob
+import pickle
 
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import precision_score
 
 df_list = []
-data_files = glob.glob('data/*.csv')
+data_files = glob.glob('backend/data/*.csv')
 
 # Combine all data files, taking email body and label
 for data_file in data_files:
@@ -44,3 +43,11 @@ X_test_feat = tfidf.transform(X_test)
 # Model Training
 model = LogisticRegression()
 model.fit(X_train_feat, Y_train)
+
+# Save our model
+with open('backend/model.pkl', 'wb') as file:
+    pickle.dump(model, file)
+
+# Save our TF-IDF
+with open('backend/tfidf.pkl', 'wb') as file:
+    pickle.dump(tfidf, file)

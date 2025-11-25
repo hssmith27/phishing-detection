@@ -1,1 +1,3 @@
-data/
+backend/data/
+backend/model.pkl
+backend/tfidf.pkl
