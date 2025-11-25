@@ -21,7 +21,7 @@ def predict():
     subject = data.get('subject', '')
     body = data.get('body', '')
     feat = tfidf.transform([subject +  " " + body])
-    return jsonify({"probability": model.predict_proba(feat)[0][1]})
+    return jsonify({"probability": round(model.predict_proba(feat)[0][1], 3)})
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=False)
